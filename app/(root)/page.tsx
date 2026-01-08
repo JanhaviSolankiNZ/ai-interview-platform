@@ -13,7 +13,7 @@ export default function Home() {
           Practise on real interview questions & get instant feedback
         </p>
         <Button asChild className="btn-primary max-sm:w-full">
-          <Link href="/interview">Start an Interview</Link>
+          <Link href="/interview-setup">Start an Interview</Link>
         </Button>
       </div>
       <Image src="/robot.png" width={400} height={400} alt={"robot"} className="max-sm:hidden" />

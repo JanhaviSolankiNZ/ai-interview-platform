@@ -228,3 +228,42 @@ export const dummyInterviews: Interview[] = [
     createdAt: "2024-03-14T15:30:00Z",
   },
 ];
+
+export const interviewStarter= [
+  {
+    key: "greeting",
+    text: "Hey {{username}}, let's prepare for your interview. Are you ready?",
+    listen: true,
+    optional: true, // not mapped
+  },
+  {
+    key: "role",
+    text: "What role would you like to train for?",
+    listen: true,
+    required: true,
+  },
+  {
+    key: "type",
+    text: "Are you aiming for a technical, behavioural or mixed interview?",
+    listen: true,
+    required: true,
+  },
+  {
+    key: "level",
+    text: "What is your job experience level?",
+    listen: true,
+    required: true,
+  },
+  {
+    key: "techstack",
+    text: "Please list the technologies you want to cover during the interview.",
+    listen: true,
+    required: true,
+  },
+  {
+    key: "amount",
+    text: "How many questions would you like to generate?",
+    listen: true,
+    required: true,
+  }
+];

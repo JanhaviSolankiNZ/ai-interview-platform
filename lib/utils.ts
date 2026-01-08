@@ -46,3 +46,11 @@ export const getRandomInterviewCover = () => {
   return `/covers${interviewCovers[randomIndex]}`;
 };
 
+export function cleanTranscript(text: string) {
+  return text
+      // remove [00:00.000 --> 00:00.000]
+      .replace(/\[\d{2}:\d{2}\.\d{3}\s-->\s\d{2}:\d{2}\.\d{3}\]/g, "")
+      // remove extra spaces
+      .replace(/\s+/g, " ")
+      .trim();
+}

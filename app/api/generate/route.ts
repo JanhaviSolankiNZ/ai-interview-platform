@@ -21,6 +21,10 @@ The amount of questions required is: ${amount}.
 
 Rules:
 - Return ONLY a valid JSON array
+- Include questions from three levels:
+  1. Basic (introduction, background, general experience)
+  2. Mid-level (practical knowledge, common scenarios, problem-solving)
+  3. Advanced (complex problems, architecture, optimization, edge cases)
 - No markdown
 - No special characters like *, /, -
 - Suitable for voice assistant
@@ -33,7 +37,6 @@ Start now.
         const questionsText = await generateInterviewQuestions(prompt);
         const cleanJson = questionsText.match(/\[[\s\S]*\]/)?.[0];
         const questions = JSON.parse(cleanJson || "[]");
-        console.log(questions);
 
         if (!Array.isArray(questions) || questions.length === 0) {
             throw new Error("AI did not return valid questions");
@@ -47,7 +50,9 @@ Start now.
             role,
             type,
             level,
-            techstack: techstack.split(","),
+            techstack: techstack.split(",")
+                .map((item: string) => item.trim())
+                .filter((item: string) => item),
             questions,
             finalized: true,
             created_at: new Date().toISOString(),
@@ -55,9 +60,9 @@ Start now.
             userId: userid,
         };
 
-        await db.collection("interviews").add(interview);
+        //await db.collection("interviews").add(interview);
 
-        return Response.json({success: true}, {status: 200});
+        return Response.json({success: true, questions}, {status: 200});
     } catch (err) {
         console.error(err);
         return Response.json(
